@@ -8,6 +8,7 @@ public class MonsterManager : MonoBehaviour
     public float sanDDL = 50;
     public float vanishSan = 180;
     public Player player;
+    public Windows windows;
     private void Start()
     {
         foreach (var monster in monsters)
@@ -24,10 +25,16 @@ public class MonsterManager : MonoBehaviour
             {
                 monster.gameObject.SetActive(true);
             }
+            if(windows.isMonsterTrriger)
+            {
+                monster.gameObject.SetActive(true);
+            }
             else if(player.san>vanishSan)
             {
                 monster.gameObject.SetActive(false);
             }
+
+            
         }
     }
 }

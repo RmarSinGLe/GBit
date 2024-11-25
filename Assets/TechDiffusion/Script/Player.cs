@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
             san+= flowerSanReply;
         }
 
-        if (collision.gameObject.tag == "monster")
+        if (collision.gameObject.tag == "Monster")
         {
             san -= monsterDamage;
         }
