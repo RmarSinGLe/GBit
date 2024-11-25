@@ -10,18 +10,21 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb; // 用于处理物理的组件
     private Collider2D col;
     public float san = 100;
-    public float fallDownDamage = 10;
+    public float fallDownDamage = 50;
     public float flowerSanReply = 10;
     public float monsterDamage = 10;
-    public float checkpointSanReply = 10;
+    public float checkpointSanReply = 1;
     public float rareOfDesan = 1;//per second
     public bool isDesan = true;
     public Transform checkpoint;
     public List<Transform> checkPointList;
     public float saveSan = 0;
 
+    public MonsterManager monsterManager;
+
     void Start()
     {
+        isDesan = true;
         rb = GetComponent<Rigidbody2D>(); // 获取 Rigidbody2D 组件
         col = GetComponent<Collider2D>();
         StartCoroutine(Desan());
@@ -34,6 +37,7 @@ public class Player : MonoBehaviour
     {
         Move();
         Jump();
+        monsterManager.UpdateMonstersState();
     }
     private void Move()
     {
@@ -77,7 +81,7 @@ public class Player : MonoBehaviour
             {
                 san =san - rareOfDesan;
             }
-            Debug.Log("每秒触发一次的代码执行了！");
+            //Debug.Log("每秒触发一次的代码执行了！");
             yield return new WaitForSeconds(1f);
         }
     }
