@@ -6,7 +6,7 @@ public class MonsterManager : MonoBehaviour
     public List<Monster> monsters; // ´æ´¢¹ÖÎïÁĞ±í
     
     public float sanDDL = 50;
-    public float vanishSan = 80;
+    public float vanishSan = 180;
     public Player player;
     private void Start()
     {

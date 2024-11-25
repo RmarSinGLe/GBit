@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,43 +14,75 @@ public class Monster : MonoBehaviour
     public Player player;
     public float countdownDuration = 5f;
 
-    public float duration = 2f; 
-    private float elapsedTime = 0f;
+    public float duration = 2f;
+
+    public float dashSpeed = 20f; // 冲刺速度
+    public float dashDuration = 1f; // 冲刺持续时间
+    private float dashCooldown = 10f; // 冲刺冷却时间
+    private float dashTimer = 0f; // 用于计算冷却时间
+    private bool isDashing = false; // 怪物是否处于冲刺状态
 
     void Start()
     {
         myPosition=transform.position;
-        gameObject.SetActive(false);
+        gameObject.SetActive(true);
         EventManager.Instance.onMonsterActivate.AddListener(MonsterStateChange);
+        dashTimer = 0f;
     }
 
     
     void Update()
     {
-        ChasePlay();
-        if (!isRest)
+        if (isDashing)
         {
-            StartCoroutine(ExecuteAfterTime(restTime));
+            Debug.Log("倒计时结束，执行事件！");
+            DashTowardsPlayer(); 
         }
+        else
+        {
+            ChasePlay(); 
+            if (dashTimer >= dashCooldown)
+            {
+                StartCoroutine(ExecuteDash());
+            }
+        }
+        dashTimer += Time.deltaTime;
 
     }
+
+    private IEnumerator ExecuteDash()
+    {
+        isDashing = true; 
+        dashTimer = 0f; 
+
+        float elapsed = 0f;
+
+        while (elapsed < dashDuration) 
+        {
+            elapsed += Time.deltaTime; 
+            yield return null; 
+        }
+
+        isDashing = false; 
+    }
+
+    private void DashTowardsPlayer()
+    {
+        if (player != null)
+        {
+            aimPosition = player.transform.position; 
+            Vector2 direction = (aimPosition - transform.position).normalized; 
+
+            transform.position = Vector2.MoveTowards(transform.position, aimPosition, dashSpeed * Time.deltaTime);
+        }
+    }
+
     private IEnumerator ExecuteAfterTime(float time)
     {
         yield return new WaitForSeconds(time);
-        Attack();
+        
     }
 
-    private void Attack()
-    {
-        Debug.Log("倒计时结束，执行事件！");
-        /*if (elapsedTime < duration)
-        {
-            elapsedTime += Time.deltaTime; // 更新经过的时间
-            float t = elapsedTime / duration; // 计算插值因子
-            Vector3 currentPosition = Vector3.Lerp(myPosition, aimPosition, t);
-            transform.position = currentPosition; // 更新物体的位置
-        }*/
-    }
     public void ChasePlay()
     {
         if(isRest)
