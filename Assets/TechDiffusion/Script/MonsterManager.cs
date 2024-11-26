@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MonsterManager : MonoBehaviour
 {
-    public List<Monster> monsters; // ´æ´¢¹ÖÎïÁÐ±í
+    public List<Monster> monsters; // ï¿½æ´¢ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
     
     public float sanDDL = 50;
     public float vanishSan = 180;
@@ -19,6 +19,10 @@ public class MonsterManager : MonoBehaviour
 
     public void UpdateMonstersState()
     {
+        if (windows==null)
+        {
+            return;            
+        }
         foreach (var monster in monsters)
         {
             if (player.san <= sanDDL)
