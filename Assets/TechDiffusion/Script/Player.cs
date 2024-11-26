@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public bool isDesan = true;
     public Transform checkpoint;
     public List<Transform> checkPointList;
-    public float saveSan = 0;
+    public float saveSan = 100;
 
     public MonsterManager monsterManager;
 
@@ -56,7 +56,6 @@ public class Player : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce); // 应用跳跃力度
             }
         }
-
         if(IsGrounded())
         {
             jumpCount = 0;
@@ -64,11 +63,11 @@ public class Player : MonoBehaviour
     }
 
     private bool IsGrounded()
-    {
+    {   
         Vector3 origin =col.bounds.center+new Vector3(0,-col.bounds.extents.y,0);
-        RaycastHit2D hit= Physics2D.Raycast(origin,Vector2.down,0.1f);
-        //Debug.DrawLine(origin, origin+Vector3.down*0.1f,Color.red);
-        //Debug.Log(hit.collider.tag);
+        RaycastHit2D hit= Physics2D.Raycast(origin,Vector2.down,0.1f,1<<7);
+        Debug.DrawLine(origin, origin+Vector3.down*0.1f,Color.red);
+        Debug.Log(hit.collider.tag);
         if (hit.collider != null && hit.collider.tag=="Ground") return true;
         else  return false;
     }
@@ -131,9 +130,10 @@ public class Player : MonoBehaviour
 
     public void gameOver()
     {
-        if(san<=0)
+        if(san<0)
         {
             reStart();
+            //.....
         }
     }
 

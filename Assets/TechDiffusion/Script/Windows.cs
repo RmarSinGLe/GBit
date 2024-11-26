@@ -10,6 +10,7 @@ public abstract class Windows : MonoBehaviour
     public bool isReplyWindow = false;
     public bool isWindowTrigger=false;
     public bool isMonsterTrriger=false;
+    public bool isMonsterEnd=false;
     public GameObject triggerPoint=null;
     public Windows[] nextWindows;
 

@@ -1,39 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class StartWindow : Windows
+public class EndMonsterWindow : Windows
 {
     TriggerPoint tp;
+    public MonsterManager monsterManager;
+
     void Start()
     {
-        tp = triggerPoint.GetComponent<TriggerPoint>();
-        WindowType();
-        Unlock();
+
     }
 
     void Update()
     {
-        TriggerPoint();
+
     }
+
     public override void WindowType()
     {
-        isWindowTrigger = true;
-        isStartWindow = true;
+       isEndWindow = true;
     }
+
     public override void Unlock()
     {
         isUnlocked = true;
     }
 
-    public override void WindowFunc()
-    {
-        Debug.Log("it's start window");
-    }
+
     public override void TriggerPoint()
     {
-        if(isWindowTrigger && tp.isTrigger)
+        if (isWindowTrigger && tp.isTrigger)
         {
             foreach (var windows in nextWindows)
             {
@@ -41,5 +38,21 @@ public class StartWindow : Windows
             }
         }
     }
-    
+
+
+    public override void WindowFunc()
+    { 
+        Debug.Log("it's monster end window");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            monsterManager.monsterWindow = false;
+        }
+    }
+
+
+
 }

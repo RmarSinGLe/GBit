@@ -4,35 +4,55 @@ using UnityEngine;
 
 public class MonsterWindow : Windows
 {
-    public override void TriggerPoint()
+    TriggerPoint tp;
+    public MonsterManager monsterManager;
+
+    void Start()
     {
-        throw new System.NotImplementedException();
+
     }
 
-    public override void Unlock()
+    void Update()
     {
-        throw new System.NotImplementedException();
-    }
 
-    public override void WindowFunc()
-    {
-        throw new System.NotImplementedException();
     }
 
     public override void WindowType()
     {
-        throw new System.NotImplementedException();
+        isMonsterTrriger = true;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public override void Unlock()
     {
-        
+        isUnlocked = true;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public override void TriggerPoint()
     {
-        
+        if (isWindowTrigger && tp.isTrigger)
+        {
+            foreach (var windows in nextWindows)
+            {
+                windows.gameObject.SetActive(true);
+            }
+        }
     }
+
+   
+    public override void WindowFunc()
+    {
+        Debug.Log("it's monster window");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag=="Player")
+        {
+            monsterManager.monsterWindow = true;
+        }
+    }
+
+
+
 }

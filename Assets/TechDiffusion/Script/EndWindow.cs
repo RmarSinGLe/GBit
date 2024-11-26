@@ -4,14 +4,36 @@ using UnityEngine;
 
 public class EndWindow : Windows
 {
+    public Windows[] delWindows;
+    TriggerPoint endPoint;
+    
+    void Start()
+    {
+        endPoint = triggerPoint.GetComponent<TriggerPoint>();
+        WindowType();
+        Unlock();
+    }
+
+    void Update()
+    {
+        TriggerPoint();
+    }
+
     public override void TriggerPoint()
     {
-        
+        if (isEndWindow && endPoint.isTrigger && isWindowTrigger)
+        {
+            DelWin();
+            foreach (var windows in nextWindows)
+            {
+                windows.gameObject.SetActive(true);
+            }
+        }
     }
 
     public override void Unlock()
     {
-        
+        isUnlocked = true;
     }
 
     public override void WindowFunc()
@@ -21,18 +43,16 @@ public class EndWindow : Windows
 
     public override void WindowType()
     {
-        
+        isWindowTrigger = true;
+        isStartWindow = true;
+        isEndWindow = true;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void DelWin()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        foreach (var win in delWindows)
+        {
+            if(win!=null) Destroy(win.gameObject);
+        }
     }
 }

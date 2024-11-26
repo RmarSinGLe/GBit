@@ -5,10 +5,10 @@ public class MonsterManager : MonoBehaviour
 {
     public List<Monster> monsters; // ¥Ê¥¢π÷ŒÔ¡–±Ì
     
-    public float sanDDL = 50;
-    public float vanishSan = 180;
+    public float sanDDL = 20;
+    public float vanishSan = 80;
     public Player player;
-    public Windows windows;
+    public bool monsterWindow=false;
     private void Start()
     {
         foreach (var monster in monsters)
@@ -21,11 +21,7 @@ public class MonsterManager : MonoBehaviour
     {
         foreach (var monster in monsters)
         {
-            if (player.san <= sanDDL)
-            {
-                monster.gameObject.SetActive(true);
-            }
-            if(windows.isMonsterTrriger)
+            if (monsterWindow||player.san <= sanDDL)
             {
                 monster.gameObject.SetActive(true);
             }
@@ -33,8 +29,6 @@ public class MonsterManager : MonoBehaviour
             {
                 monster.gameObject.SetActive(false);
             }
-
-            
         }
     }
 }
