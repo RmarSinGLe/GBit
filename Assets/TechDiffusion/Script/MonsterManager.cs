@@ -19,10 +19,6 @@ public class MonsterManager : MonoBehaviour
 
     public void UpdateMonstersState()
     {
-        if (windows==null)
-        {
-            return;            
-        }
         foreach (var monster in monsters)
         {
             if (monsterWindow||player.san <= sanDDL)
