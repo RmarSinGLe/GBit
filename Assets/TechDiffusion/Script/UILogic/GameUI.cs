@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
@@ -17,7 +18,8 @@ public class GameUI : MonoBehaviour
     public Button resumeButton; 
     public Button pauseButton; 
     public Button exitButton;
-    public Button settingButton; 
+    public Button settingButton;
+    public Button restartButton;
     public Scrollbar volumeScrollbar;
     public Toggle muteToggle;
     public AudioSource audioSource;
@@ -37,6 +39,7 @@ public class GameUI : MonoBehaviour
         exitButton.onClick.AddListener(QuitApplication);
         pauseButton.onClick.AddListener(PauseGame);
         settingButton.onClick.AddListener(OpenSettings);
+        restartButton.onClick.AddListener(ReStart);
 
         previousVolume = PlayerPrefs.GetFloat("VolumeLevel", 1f); // 初始化previousVolume
         volumeScrollbar.value = previousVolume; // 初始化滑动条位置
@@ -146,6 +149,7 @@ public class GameUI : MonoBehaviour
         exitButton.onClick.RemoveListener(QuitApplication);
         pauseButton.onClick.RemoveListener(PauseGame);
         settingButton.onClick.RemoveListener(OpenSettings);
+        restartButton.onClick.RemoveListener(ReStart);
     }
 
     public void showMuteImage()
@@ -164,5 +168,10 @@ public class GameUI : MonoBehaviour
                 img.gameObject.SetActive(false);
             }
         }
+    }
+
+    public void ReStart()
+    {
+        SceneManager.LoadScene(1);
     }
 }
