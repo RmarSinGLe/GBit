@@ -5,6 +5,7 @@ using UnityEngine;
 public class JumpingState : IState
 {
     private StateMachine stateMachine;
+    private static readonly int IsJumping = Animator.StringToHash("IsJumping");
 
     public JumpingState(StateMachine sm)
     {
@@ -12,13 +13,13 @@ public class JumpingState : IState
     }
     public void Enter()
     {
-        stateMachine.Animator.SetBool("IsJumping", true);
+        stateMachine.Animator.SetBool(IsJumping, true);
         Debug.Log("进入跳跃状态");
     }
 
     public void Exit()
     {
-        stateMachine.Animator.SetBool("IsJumping", false);
+        stateMachine.Animator.SetBool(IsJumping, false);
         Debug.Log("退出跳跃状态");
     }
 
