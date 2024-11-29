@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
     private bool isInvincible = false; // 无敌状态标志
     private Vector2 knockbackForce; // 碰撞弹开的方向力
 
+    private Animator animator; 
+
     void Start()
     {
         isDesan = true;
@@ -44,6 +46,8 @@ public class Player : MonoBehaviour
         restartButton.onClick.AddListener(RestartGame);
         quitButton.onClick.AddListener(QuitGame);
         gameOverPanel.SetActive(false); // 初始化时隐藏面板
+
+        animator = GetComponent<Animator>();
     }
     private void FixedUpdate()
     {
@@ -56,6 +60,8 @@ public class Player : MonoBehaviour
         Jump();
         monsterManager.UpdateMonstersState();
         gameOver();
+
+        UpdateAnimation();
     }
     private void Move()
     {
@@ -210,6 +216,25 @@ public class Player : MonoBehaviour
         {
             // 如果处于无敌状态，应用弹开效果
             rb.velocity = new Vector2(knockbackForce.x, rb.velocity.y);
+        }
+    }
+
+    private void UpdateAnimation()
+    {
+        float moveInput = Input.GetAxis("Horizontal");
+        animator.SetBool("IsRuning", moveInput != 0); 
+
+        animator.SetBool("IsJumping", !IsGrounded());
+
+        animator.SetBool("IsIdle", moveInput == 0 && IsGrounded());
+
+        if (moveInput > 0)
+        {
+            rbSprite.flipX = false;
+        }
+        else if (moveInput < 0)
+        {
+            rbSprite.flipX = true;
         }
     }
 }
