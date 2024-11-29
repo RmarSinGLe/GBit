@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public int jumpCount =2; // 跳跃计数器
     private Rigidbody2D rb; // 用于处理物理的组件
     private Collider2D col;
+    private SpriteRenderer rbSprite;
     public float san = 100;
     public float fallDownDamage = 50;
     public float flowerSanReply = 10;
@@ -28,11 +29,16 @@ public class Player : MonoBehaviour
     public Button restartButton; // 复活按钮
     public Button quitButton; // 退出按钮
 
+    public float invincibilityDuration = 1f; // 无敌时间
+    private bool isInvincible = false; // 无敌状态标志
+    private Vector2 knockbackForce; // 碰撞弹开的方向力
+
     void Start()
     {
         isDesan = true;
         rb = GetComponent<Rigidbody2D>(); // 获取 Rigidbody2D 组件
         col = GetComponent<Collider2D>();
+        rbSprite = GetComponent<SpriteRenderer>();
         StartCoroutine(Desan());
 
         restartButton.onClick.AddListener(RestartGame);
@@ -42,6 +48,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         resetPosition();
+        knockAway();
     }
     void Update()
     {
@@ -103,9 +110,13 @@ public class Player : MonoBehaviour
             san+= flowerSanReply;
         }
 
-        if (collision.gameObject.tag == "Monster")
+        if (collision.gameObject.tag == "Monster" && !isInvincible)
         {
+            Debug.Log("Monster hit me!!!");
             san -= monsterDamage;
+            Vector2 direction = (transform.position - collision.transform.position).normalized;
+            knockbackForce = direction * 10f;
+            StartCoroutine(InvincibilityCoroutine());   
         }
 
         if(collision.gameObject.tag =="Checkpoint")
@@ -168,7 +179,37 @@ public class Player : MonoBehaviour
     private void QuitGame()
     {
         // 返回主菜单或者退出游戏，这里可以根据实际需求修改
-        Time.timeScale = 1; // 恢复游戏
-        SceneManager.LoadScene("StartScene"); // 假设有一个主菜单场景，这需要在 Build Settings 中设置
+        Time.timeScale = 1; 
+        SceneManager.LoadScene("StartScene"); 
+    }
+
+    private IEnumerator InvincibilityCoroutine()
+    {
+        isInvincible = true;
+        Color originalColor = rbSprite.color; 
+        float flashDuration = 0.1f; 
+        int flashCount = 10; 
+
+        // 进行闪烁
+        for (int i = 0; i < flashCount; i++)
+        {
+            rbSprite.color = Color.red; 
+            yield return new WaitForSeconds(flashDuration); 
+            rbSprite.color = originalColor;
+            yield return new WaitForSeconds(flashDuration);
+        }
+
+        rbSprite.color = originalColor;
+        yield return new WaitForSeconds(invincibilityDuration - (flashCount * flashDuration));
+        isInvincible = false;
+    }
+
+    public void knockAway()
+    {
+        if (isInvincible)
+        {
+            // 如果处于无敌状态，应用弹开效果
+            rb.velocity = new Vector2(knockbackForce.x, rb.velocity.y);
+        }
     }
 }

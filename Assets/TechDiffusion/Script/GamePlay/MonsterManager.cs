@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MonsterManager : MonoBehaviour
 {
-    public List<Monster> monsters; // �洢�����б�
+    public List<Monster> monsters; 
     
     public float sanDDL = 20;
     public float vanishSan = 80;
