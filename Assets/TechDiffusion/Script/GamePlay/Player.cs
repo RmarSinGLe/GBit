@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     public float fallDownDamage = 50;
     public float flowerSanReply = 10;
     public float monsterDamage = 10;
-    public float checkpointSanReply = 1;
+    public float checkpointSanReply = 10;
     public float rareOfDesan = 1;//per second
     public bool isDesan = true;
     public Transform checkpoint;
@@ -87,13 +87,27 @@ public class Player : MonoBehaviour
     }
 
     private bool IsGrounded()
-    {   
-        Vector3 origin =col.bounds.center+new Vector3(0,-col.bounds.extents.y,0);
-        RaycastHit2D hit= Physics2D.Raycast(origin,Vector2.down,0.1f,1<<7);
-        Debug.DrawLine(origin, origin+Vector3.down*0.1f,Color.red);
-        //Debug.Log(hit.collider.tag);
-        if (hit.collider != null && hit.collider.tag=="Ground") return true;
-        else  return false;
+    {
+        // 定义射线的起点
+        Vector3 origin = col.bounds.center + new Vector3(0, -col.bounds.extents.y, 0);
+        // 定义射线的长度
+        float rayLength = 0.1f;
+        // 定义射线偏移量
+        float rayOffset = col.bounds.extents.x / 3; // 将底部分成3个部分
+
+        // 创建射线进行地面检测
+        for (int i = -1; i <= 1; i++)
+        {
+            Vector3 rayOrigin = origin + new Vector3(i * rayOffset, 0, 0);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, rayLength, 1 << 7);
+            Debug.DrawLine(rayOrigin, rayOrigin + Vector3.down * rayLength, Color.red);
+
+            if (hit.collider != null && hit.collider.CompareTag("Ground"))
+            {
+                return true; // 如果任意一条射线检测到Ground，则返回true
+            }
+        }
+        return false; // 如果没有射线检测到Ground，则返回false
     }
 
     private IEnumerator Desan()
@@ -127,10 +141,16 @@ public class Player : MonoBehaviour
 
         if(collision.gameObject.tag =="Checkpoint")
         {
-            san += checkpointSanReply;
-            checkPointList.Add(checkpoint);
-            checkpoint=collision.transform;
-            saveSan = san;
+            CheckPoint cp= collision.gameObject.GetComponent<CheckPoint>();
+            Debug.Log(cp.isVisited);
+            if (!cp.isVisited)
+            {
+                Debug.Log("111111111");
+                checkpoint =cp.transform;
+                san += checkpointSanReply;
+                checkPointList.Add(cp.transform);
+                saveSan = san;
+            }
         }
     }
     public void fallDown()
@@ -160,9 +180,10 @@ public class Player : MonoBehaviour
     {
         if(san<0)
         {
-            reStart();
-            Time.timeScale = 0;
-            gameOverPanel.SetActive(true);
+            //reStart();
+            /*Time.timeScale = 0;
+            gameOverPanel.SetActive(true);*/
+            SceneManager.LoadScene("DeathScene");
         }
     }
 

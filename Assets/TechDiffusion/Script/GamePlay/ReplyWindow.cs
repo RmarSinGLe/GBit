@@ -14,6 +14,7 @@ public class ReplyWindow : Windows
 
     void Start()
     {
+        tp = triggerPoint.GetComponent<TriggerPoint>();
         WindowType();
         Unlock();
     }
@@ -21,12 +22,13 @@ public class ReplyWindow : Windows
 
     void Update()
     {
-
+        TriggerPoint();
     }
 
     public override void WindowType()
     {
         isReplyWindow = true;
+        isWindowTrigger = true;
     }
 
     public override void TriggerPoint()
@@ -75,7 +77,7 @@ public class ReplyWindow : Windows
         isCoroutineRunning = true;
         while (true)
         {
-            if (inReplyZone)
+            if (inReplyZone&&player.san<=100)
             {
                 player.san += valueOfRelply;
             }
