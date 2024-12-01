@@ -5,6 +5,8 @@ public class AudioGlobals
     //BGM
     public const string StrangeDream = "BGM/StrangeDream";
     public const string Dream = "BGM/Dream";
+    public const string ERROR = "BGM/ERROR";
+    public const string GameOver = "GameOver";
 
 
     //SFX
@@ -21,13 +23,11 @@ public class AudioGlobals
     public const string ToEnemyWindow = "SFX/ToEnemyWindows";
     public const string Escape_Setting_Click = "SFX/Escape_Setting_Click";
     public const string Escape_Setting_ClickBack = "SFX/Escape_Setting_ClickBack";
-    public const string HavingStrangeDreramWindowCreate = "SFX/HavingStrangeDreramWindowCreate";
-    public const string HavingStrangeDreramWindowYes = "SFX/HavingStrangeDreramWindowYes";
-    public const string HavingStrangeDreramWindowStop = "SFX/HavingStrangeDreramWindowStop";
+    public const string HavingStrangeDreamWindowCreate = "SFX/HavingStrangeDreamWindowCreate";
+    public const string HavingStrangeDreamWindowYes = "SFX/HavingStrangeDreamWindowYes";
+    public const string HavingStrangeDreamWindowStop = "SFX/HavingStrangeDreamWindowStop";
     public const string WarningWindows1 = "SFX/WarningWindows1";
     public const string WarningWindows2 = "SFX/WarningWindows2";
-    public const string GameOver = "SFX/GameOver";
-    public const string GamePass = "SFX/GamePass";
 
 
 
