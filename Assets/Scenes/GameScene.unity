@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8939,7 +8940,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 40a28fd84ecb37940812c8840a43457e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e32ec34ab1ef34605b120cff2d65b7e2, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -9234,7 +9235,7 @@ PrefabInstance:
     - target: {fileID: 7996051281316886531, guid: ce713970be24b2e48b323502161b93f3, type: 3}
       propertyPath: nextWindows.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2003262976}
     - target: {fileID: 7996051281316886531, guid: ce713970be24b2e48b323502161b93f3, type: 3}
       propertyPath: nextWindows.Array.data[1]
       value: 
