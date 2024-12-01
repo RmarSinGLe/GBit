@@ -24,7 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainText:
-        m_Texture: {fileID: 2800000, guid: ab380bd4b5d89c045b437d66f731408f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 190f77f57f74fb14290c844058c2b329, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Noise:
@@ -33,10 +33,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _NoiseScaine: 0.0196
-    - _NoiseXspeed: 5
-    - _NoiseYspeed: 5
-    - _TimeScaie: 30
+    - _NoiseScaine: 0.001
+    - _NoiseXspeed: 4.7
+    - _NoiseYspeed: 2.84
+    - _TimeScaie: 1.85
     m_Colors:
-    - _RB_Offset: {r: 0.7, g: 0, b: -1.17, a: 0}
+    - _RB_Offset: {r: 1, g: 0, b: 1, a: 0}
   m_BuildTextureStacks: []
