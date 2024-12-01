@@ -27,6 +27,7 @@ public class GameUI : MonoBehaviour
 
     public Image[] muteImage;
     private float previousVolume; // 用于保存之前的音量值
+
     void Start()
     {
         currentSan = maxSan;
@@ -46,6 +47,8 @@ public class GameUI : MonoBehaviour
         audioSource.volume = previousVolume; // 初始化音量
         volumeScrollbar.onValueChanged.AddListener(OnVolumeChange);
         muteToggle.onValueChanged.AddListener(OnMuteToggleChange);
+
+
     }
     private void Update()
     {
@@ -57,7 +60,14 @@ public class GameUI : MonoBehaviour
 
     private void OpenSettings()
     {
-        settingPanel.SetActive(true);
+        if (settingPanel.activeSelf)
+        {
+            settingPanel.SetActive(false);
+        }
+        else
+        {
+            settingPanel.SetActive(true);
+        }
     }
 
     void UpdateHealthBar()
