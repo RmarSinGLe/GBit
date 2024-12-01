@@ -135,7 +135,8 @@ public class Player : MonoBehaviour
             Debug.Log("Monster hit me!!!");
             san -= monsterDamage;
             Vector2 direction = (transform.position - collision.transform.position).normalized;
-            knockbackForce = direction * 10f;
+            //
+            knockbackForce = direction * 5f;
             StartCoroutine(InvincibilityCoroutine());   
         }
 
