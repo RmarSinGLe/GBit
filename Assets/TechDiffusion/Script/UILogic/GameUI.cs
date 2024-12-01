@@ -121,24 +121,24 @@ public class GameUI : MonoBehaviour
             audioSource.volume = 0;
             volumeScrollbar.value = 0; // 设置滑条为0
         }
-        else
+        /*else
         {
             audioSource.volume = previousVolume; // 恢复到之前的音量
             volumeScrollbar.value = previousVolume; // 恢复滑条的位置
             audioSource.Play(); // 播放音频
-        }
+        }*/
     }
 
     private void OnVolumeChange(float value)
     {
-        if (value == 0)
+        if (value <= 0)
         {
-            muteToggle.isOn = true;
+           // muteToggle.isOn = true; // 滑条音量为0时设置静音按钮为选中状态
             audioSource.volume = 0; // 将音量设置为0
         }
         else
         {
-            muteToggle.isOn = false;
+            muteToggle.isOn = false; // 否则取消静音按钮的选中状态
             audioSource.volume = value; // 更新音量
         }
 
