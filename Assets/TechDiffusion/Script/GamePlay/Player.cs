@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public float moveSpeed = 5f; // 移动速度
     public float jumpForce = 5f; // 跳跃力度
     public int jumpCount =2; // 跳跃计数器
-    private Rigidbody2D rb; // 用于处理物理的组件
+    private Rigidbody2D rb; 
     private Collider2D col;
     private SpriteRenderer rbSprite;
     public float san = 100;
@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public bool isDesan = true;
     public Transform checkpoint;
     public List<Transform> checkPointList;
+    public int pointIndex = 0;
     public float saveSan = 100;
 
     public MonsterManager monsterManager;
@@ -91,7 +92,7 @@ public class Player : MonoBehaviour
         // 定义射线的起点
         Vector3 origin = col.bounds.center + new Vector3(0, -col.bounds.extents.y, 0);
         // 定义射线的长度
-        float rayLength = 0.1f;
+        float rayLength = 0.3f;
         // 定义射线偏移量
         float rayOffset = col.bounds.extents.x / 3; // 将底部分成3个部分
 
@@ -142,10 +143,8 @@ public class Player : MonoBehaviour
         if(collision.gameObject.tag =="Checkpoint")
         {
             CheckPoint cp= collision.gameObject.GetComponent<CheckPoint>();
-            Debug.Log(cp.isVisited);
             if (!cp.isVisited)
             {
-                Debug.Log("111111111");
                 checkpoint =cp.transform;
                 san += checkpointSanReply;
                 checkPointList.Add(cp.transform);
@@ -164,7 +163,16 @@ public class Player : MonoBehaviour
 
     public void ResetToCheckpoint()
     {
-        transform.position = checkpoint.position; // 将角色位置设置为存档点的位置
+        if (checkpoint != null)
+        {
+            san = saveSan;
+            transform.position = checkpoint.position;
+        }
+        else
+        {
+            checkpoint = checkPointList[pointIndex];
+            transform.position = checkpoint.position;
+        }
     }
 
     public void resetPosition()
@@ -189,8 +197,7 @@ public class Player : MonoBehaviour
 
     public void reStart()
     {
-        san = saveSan;
-        transform.position = checkpoint.position;
+        
     }
 
 
