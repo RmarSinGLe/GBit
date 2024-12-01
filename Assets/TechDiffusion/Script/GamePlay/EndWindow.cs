@@ -6,7 +6,9 @@ public class EndWindow : Windows
 {
     public Windows[] delWindows;
     TriggerPoint endPoint;
-    
+    public Player player;
+    private bool hasExecuted = false;
+
     void Start()
     {
         endPoint = triggerPoint.GetComponent<TriggerPoint>();
@@ -23,11 +25,17 @@ public class EndWindow : Windows
     {
         if (isEndWindow && endPoint.isTrigger && isWindowTrigger)
         {
+            if (hasExecuted)
+            {
+                return; // 已经执行过，直接返回
+            }
             DelWin();
             foreach (var windows in nextWindows)
             {
                 windows.gameObject.SetActive(true);
             }
+            player.pointIndex++;
+            hasExecuted = true;
         }
     }
 
