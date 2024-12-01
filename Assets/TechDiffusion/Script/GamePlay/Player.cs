@@ -190,9 +190,9 @@ public class Player : MonoBehaviour
         if(san<0)
         {
             //reStart();
-            /*Time.timeScale = 0;
-            gameOverPanel.SetActive(true);*/
-            SceneManager.LoadScene("DeathScene");
+            //Time.timeScale = 0;
+            gameOverPanel.SetActive(true);
+            //SceneManager.LoadScene("DeathScene");
         }
     }
 
