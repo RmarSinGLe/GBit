@@ -97,9 +97,7 @@ public class GameUI : MonoBehaviour
 
     void QuitApplication()
     {
-        // 退出游戏
         Application.Quit();
-        // 如果在编辑器下测试，也需要停止播放
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
@@ -125,18 +123,15 @@ public class GameUI : MonoBehaviour
     {
         if (value == 0)
         {
-            // 如果滑块值为0，设置切换为选中状态
             muteToggle.isOn = true;
             audioSource.volume = 0; // 将音量设置为0
         }
         else
         {
-            // 如果滑块值不为0，取消切换
             muteToggle.isOn = false;
             audioSource.volume = value; // 更新音量
         }
 
-        // 保存音量设置
         PlayerPrefs.SetFloat("VolumeLevel", value);
     }
 

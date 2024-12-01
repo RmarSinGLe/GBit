@@ -5964,7 +5964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7296450035473109521, guid: b8af6907c3273ce49ab74485e4532c75, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1257104350963237296, guid: b8af6907c3273ce49ab74485e4532c75, type: 3}
@@ -5980,7 +5980,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3824407943075911311, guid: b8af6907c3273ce49ab74485e4532c75, type: 3}
       insertIndex: -1
       addedObject: {fileID: 842056062}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7296450035473109521, guid: b8af6907c3273ce49ab74485e4532c75, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2003262976}
+    - targetCorrespondingSourceObject: {fileID: 7296450035473109521, guid: b8af6907c3273ce49ab74485e4532c75, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2003262977}
   m_SourcePrefab: {fileID: 100100000, guid: b8af6907c3273ce49ab74485e4532c75, type: 3}
 --- !u!1001 &514713261
 PrefabInstance:
@@ -6354,7 +6360,7 @@ Transform:
   m_LocalScale: {x: 0.6660249, y: 1.0754236, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2003262978}
+  m_Father: {fileID: 2003262979}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &522584134
 SpriteRenderer:
@@ -6455,7 +6461,7 @@ Transform:
   m_LocalScale: {x: 0.8111696, y: 0.52400565, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2003262978}
+  m_Father: {fileID: 2003262979}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &565303281
 PolygonCollider2D:
@@ -8669,7 +8675,7 @@ PrefabInstance:
     - target: {fileID: 7996051281316886531, guid: ce713970be24b2e48b323502161b93f3, type: 3}
       propertyPath: nextWindows.Array.data[0]
       value: 
-      objectReference: {fileID: 2003262981}
+      objectReference: {fileID: 0}
     - target: {fileID: 7996051281316886531, guid: ce713970be24b2e48b323502161b93f3, type: 3}
       propertyPath: nextWindows.Array.data[1]
       value: 
@@ -8978,7 +8984,7 @@ Transform:
   m_LocalScale: {x: 1.0636, y: 1.0636, z: 1.0636}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2003262978}
+  m_Father: {fileID: 2003262979}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &842056063
 SpriteRenderer:
@@ -18965,7 +18971,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2003262976 stripped
+--- !u!114 &2003262976
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -18988,6 +18994,23 @@ MonoBehaviour:
   nextWindows: []
   delWindows: []
   player: {fileID: 0}
+--- !u!114 &2003262977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401129201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7de11d141b2470e4b8432d9cebc7be3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2003262979 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3824407943075911311, guid: b8af6907c3273ce49ab74485e4532c75, type: 3}
+  m_PrefabInstance: {fileID: 513589200}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2016468933
 GameObject:
   m_ObjectHideFlags: 0
@@ -21247,11 +21270,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7779443213394639221, guid: 43813b9e860124144a19d6011a071647, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.57
+      value: -2.72
       objectReference: {fileID: 0}
     - target: {fileID: 7779443213394639221, guid: 43813b9e860124144a19d6011a071647, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.28
+      value: 0.18
       objectReference: {fileID: 0}
     - target: {fileID: 7779443213394639221, guid: 43813b9e860124144a19d6011a071647, type: 3}
       propertyPath: m_LocalPosition.z

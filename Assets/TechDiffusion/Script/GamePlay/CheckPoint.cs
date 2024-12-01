@@ -7,7 +7,6 @@ public class CheckPoint : MonoBehaviour
     public bool isVisited=false;
     void Start()
     {
-
         isVisited = false;
     }
     void Update()
@@ -27,6 +26,5 @@ public class CheckPoint : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         isVisited = true;
-
     }
 }

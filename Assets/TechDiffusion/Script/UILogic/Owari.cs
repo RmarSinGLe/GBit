@@ -12,8 +12,6 @@ public class Owari : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             Debug.Log("Victory! Switching to victory scene.");
-
-            // ÇÐ»»µ½Ê¤Àû³¡¾°
             SceneManager.LoadScene("VictoryScene"); 
         }
     }
