@@ -16,11 +16,11 @@ public class Monster : MonoBehaviour
 
     public float duration = 2f;
 
-    public float dashSpeed = 20f; // ³å´ÌËÙ¶È
-    public float dashDuration = 1f; // ³å´Ì³ÖÐøÊ±¼ä
-    private float dashCooldown = 10f; // ³å´ÌÀäÈ´Ê±¼ä
-    private float dashTimer = 0f; // ÓÃÓÚ¼ÆËãÀäÈ´Ê±¼ä
-    private bool isDashing = false; // ¹ÖÎïÊÇ·ñ´¦ÓÚ³å´Ì×´Ì¬
+    public float dashSpeed = 20f; // ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
+    public float dashDuration = 1f; // ï¿½ï¿½Ì³ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+    private float dashCooldown = 10f; // ï¿½ï¿½ï¿½ï¿½ï¿½È´Ê±ï¿½ï¿½
+    private float dashTimer = 0f; // ï¿½ï¿½ï¿½Ú¼ï¿½ï¿½ï¿½ï¿½ï¿½È´Ê±ï¿½ï¿½
+    private bool isDashing = false; // ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ú³ï¿½ï¿½×´Ì¬
 
     void Start()
     {
@@ -35,7 +35,7 @@ public class Monster : MonoBehaviour
     {
         if (isDashing)
         {
-            Debug.Log("µ¹¼ÆÊ±½áÊø£¬Ö´ÐÐÊÂ¼þ£¡");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½");
             DashTowardsPlayer(); 
         }
         else
@@ -102,6 +102,6 @@ public class Monster : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventManager.Instance.onMonsterActivate.RemoveListener(MonsterStateChange);
+//        EventManager.Instance.onMonsterActivate.RemoveListener(MonsterStateChange);
     }
 }
